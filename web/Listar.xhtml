@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Lista Usuarios Registrados</title>
+        <h:outputScript name="resources/css/bootstrap.min.css" />
+        <link href="resources/css/bootstrap.css"
+              rel="stylesheet" />
+    </h:head>
+    <h:body>
+        <h2 class="text-center text-info">Usuarios Registrados</h2>
+        <div class="container">
+            <h:form>
+                <p:commandButton value="Agregar Nuevo" action="#{usuarioBean.crearUsuario()}" style="margin-right:20px;" styleClass="ui-priority-primary" />
+                <br/><br/> 
+
+                <p:outputPanel>
+                    <p:dataTable id="UserTable" binding="#{table}" value="#{usuarioBean.lista}" var="user">
+
+                        <p:column headerText="Id">
+                            <f:facet name="header">
+                                <h:outputText value="Id" />
+                            </f:facet>
+                            <h:outputText value="#{user.id}" />
+                        </p:column>
+
+                        <p:column headerText="Alias">
+                            <f:facet name="header">
+                                <h:outputText value="Alias" />
+                            </f:facet>
+                            <h:outputText value="#{user.alias}" />
+                        </p:column>
+
+                        <p:column headerText="Nombre">
+                            <f:facet name="header">
+                                <h:outputText value="Nombre" />
+                            </f:facet>
+                            <h:outputText value="#{user.nombre}" />
+                        </p:column>
+
+                        <p:column headerText="Apellidos">
+                            <f:facet name="header">
+                                <h:outputText value="Apellidos" />
+                            </f:facet>
+                            <h:outputText value="#{user.apellidos}" />
+                        </p:column>
+
+                        <p:column headerText="Correo">
+                            <f:facet name="header">
+                                <h:outputText value="Correo" />
+                            </f:facet>
+                            <h:outputText value="#{user.email}" />
+                        </p:column>
+
+                        <p:column headerText="">
+                            <p:commandButton value="Consultar" action="#{usuarioBean.consultarUsuario(user.id)}" style="margin-right:20px;" styleClass="ui-priority-primary" />
+                        </p:column>
+
+                        <p:column headerText="Acciones">
+                            <p:commandButton value="Editar" action="#{usuarioBean.editaUsuario(user.id)}" style="margin-right:20px;" styleClass="ui-priority-primary" />
+                        </p:column>
+                        <p:column headerText="">
+                            <p:commandButton value="Eliminar" action="#{usuarioBean.eliminaUsuario(user.id)}" style="margin-right:20px;" styleClass="ui-priority-primary" />
+                        </p:column>
+
+                    </p:dataTable>
+                </p:outputPanel>
+            </h:form>
+        </div>
+    </h:body>
+</html>
